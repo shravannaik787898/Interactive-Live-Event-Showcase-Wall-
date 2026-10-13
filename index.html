@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Day 30 - Live Event Showcase Wall</title>
+    <style>
+        body { font-family: Arial, sans-serif; background: #f4f4f9; padding: 20px; }
+        .container { max-width: 800px; margin: auto; }
+        .filters { margin-bottom: 20px; text-align: center; }
+        .filters button { padding: 8px 16px; margin: 0 5px; cursor: pointer; border: none; background: #ddd; border-radius: 4px; }
+        .filters button.active { background: #007bff; color: white; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 15px; }
+        .card { background: white; padding: 15px; border-radius: 6px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+        .card h3 { margin-top: 0; color: #007bff; }
+        .tag { display: inline-block; padding: 3px 8px; font-size: 12px; border-radius: 3px; background: #e2e8f0; color: #333; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Live Event Showcase Wall</h2>
+    
+    <div class="filters">
+        <button class="active" onclick="filterEvents('all', this)">All Events</button>
+        <button onclick="filterEvents('live', this)">Live Now</button>
+        <button onclick="filterEvents('upcoming', this)">Upcoming</button>
+    </div>
+
+    <div class="grid" id="eventGrid">
+        <div class="card" data-category="live">
+            <h3>SEO Masterclass</h3>
+            <p>Date: Oct 14, 2026</p>
+            <span class="tag" style="background:#d4edda; color:#155724;">Live Now</span>
+        </div>
+        <div class="card" data-category="upcoming">
+            <h3>ReactJS Bootcamp</h3>
+            <p>Date: Oct 25, 2026</p>
+            <span class="tag" style="background:#cce5ff; color:#004085;">Upcoming</span>
+        </div>
+        <div class="card" data-category="upcoming">
+            <h3>UI/UX Design Trends</h3>
+            <p>Date: Nov 02, 2026</p>
+            <span class="tag" style="background:#cce5ff; color:#004085;">Upcoming</span>
+        </div>
+    </div>
+</div>
+
+<script>
+function filterEvents(category, btn) {
+    document.querySelectorAll('.filters button').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+
+    let cards = document.querySelectorAll('.card');
+    cards.forEach(card => {
+        if (category === 'all' || card.dataset.category === category) {
+            card.style.display = 'block';
+        } else {
+            card.style.display = 'none';
+        }
+    });
+}
+</script>
+
+</body>
+</html>
